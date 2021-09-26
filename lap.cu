@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <ctime>
 #include <fstream>
-#include "/home/mohammed/projects/testingNPPs/arf_arf.C"
 #include <array>
 #include <chrono>
 #include <string>
@@ -74,9 +73,10 @@ __global__ void LaplacianFilter(float* g_DataIn, float* g_DataOut, int* width, i
 int main()
 {
 	//Load data from ARF file
-	arfobj arf_file_handle("/home/mohammed/frames-TM1531160339GR00-24/frames-TM1531160339GR00-24.arf");
-
-	uint16_t* rawFrame = arf_file_handle.load16(1000);
+    /*
+    Load frame pointer here
+    uint16_t* rawFrame = 
+    */ 
 
     int width = 1920 ; 
     int height = 1200 ; 
@@ -123,10 +123,10 @@ int main()
     cudaEventCreate(&stop);
     cudaEventRecord(start);
 
-	int gridWidth  = (width + TILE_WIDTH - 1) / TILE_WIDTH;
-	int gridHeight = (height + TILE_HEIGHT - 1) / TILE_HEIGHT;
+    int gridWidth  = (width + TILE_WIDTH - 1) / TILE_WIDTH;
+    int gridHeight = (height + TILE_HEIGHT - 1) / TILE_HEIGHT;
     dim3 dimGrid(gridWidth, gridHeight);
-	dim3 dimBlock(BLOCK_WIDTH, BLOCK_HEIGHT);
+    dim3 dimBlock(BLOCK_WIDTH, BLOCK_HEIGHT);
     LaplacianFilter<<< dimGrid, dimBlock >>>(dL, d_final_frame, d_Width, d_Height, d_LaplacianMatrix);
 
     cudaEventRecord(stop);
