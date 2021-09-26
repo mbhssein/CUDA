@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <ctime>
 #include <fstream>
-#include "arf_arf.C"
 #include <array>
 #include <chrono>
 #include <string>
@@ -124,11 +123,11 @@ __global__ void transform(float* L , float* dCdf){
 
 int main()
 {
-	//Load data from ARF file
-	arfobj arf_file_handle("/home/mohammed/frames-TM1531160339GR00-24/frames-TM1531160339GR00-24.arf");
 
-	uint16_t* rawFrame = arf_file_handle.load16(1000);
-
+    /*
+    Load frame pointer here
+    uint16_t* rawFrame = 
+    */ 
 
     long N = width * height;
     int num_block = rowBlocks * colBlocks;
