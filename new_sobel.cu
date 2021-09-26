@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <ctime>
 #include <fstream>
-#include "/home/mohammed/projects/testingNPPs/arf_arf.C"
 #include <array>
 #include <chrono>
 #include <string>
@@ -52,10 +51,10 @@ __global__ void Sobel(uint16_t* input, uint16_t* output, const int width, const 
 
 int main()
 {
-	arfobj arf_file_handle("/home/mohammed/frames-TM1531160339GR00-24/frames-TM1531160339GR00-24.arf");
-
-	uint16_t* rawFrame = arf_file_handle.load16(1000);
-
+    /*
+    Load frame pointer here
+    uint16_t* rawFrame = 
+    */ 
     int width = 1920 ; 
     int height = 1200 ; 
 
